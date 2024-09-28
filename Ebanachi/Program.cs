@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ebanachi
 {
@@ -19,52 +14,29 @@ namespace Ebanachi
 
         private static int fibonachiCalculate(int mode, int value)
         {
-            int counter = 2;
-            int preValue = secondValueAndSequence;
-            int prePreValue = firstValueAndSequence;
-
-            if (value == 0) return firstValueAndSequence;
-            else if (value == 1) return secondValueAndSequence;
 
             if (mode == 1)
             {
-                return CalculateValue(value, ref counter, ref preValue, ref prePreValue);
+                return CalculateValue(value);
             }
 
-            return CalculateSequence(value, ref counter, ref preValue, ref prePreValue);
+            int index = 2;
+            return CalculateSequence(value, index);
         }
 
-        private static int CalculateValue(int sequence, ref int counter, ref int pre, ref int prePre)
+        private static int CalculateValue(int n)
         {
-            int currentValue = pre + prePre;
-            prePre = pre;
-            pre = currentValue;
-            counter++;
-
-            if (counter <= sequence)
-            {
-                currentValue = CalculateValue(sequence, ref counter, ref pre, ref prePre);
-            }
-
-            return currentValue;
+            if (n == 0 || n == 1) return n;
+            return CalculateValue(n - 1) + CalculateValue(n - 2);
         }
 
-        private static int CalculateSequence(int value, ref int counter, ref int pre, ref int prePre)
+        private static int CalculateSequence(int n, int index)
         {
-            int currentValue = pre + prePre;
-            prePre = pre;
-            pre = currentValue;
+            if (n == 0 || n == 1) return n;
 
-            if (currentValue != value)
-            {
-                counter++;
-                currentValue = CalculateSequence(value, ref counter, ref pre, ref prePre);
-            }
-
-            return counter;
+            if (CalculateValue(index) == n) return index;
+            index++;
+            return CalculateSequence(n, index);
         }
-
-        private const int firstValueAndSequence = 0;
-        private const int secondValueAndSequence = 1;
     }
 }
