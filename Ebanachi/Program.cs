@@ -6,13 +6,13 @@ namespace Ebanachi
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(fibonachiCalculate(1, 6));
-            Console.WriteLine(fibonachiCalculate(2, 8));
+            Console.WriteLine(FibonachiCalculate(1, 6));
+            Console.WriteLine(FibonachiCalculate(2, 8));
 
             Console.ReadKey();
         }
 
-        private static int fibonachiCalculate(int mode, int value)
+        private static int FibonachiCalculate(int mode, int value)
         {
 
             if (mode == 1)
@@ -35,8 +35,7 @@ namespace Ebanachi
             if (n == 0 || n == 1) return n;
 
             if (CalculateValue(index) == n) return index;
-            index++;
-            return CalculateSequence(n, index);
+            return CalculateSequence(n, ++index);
         }
     }
 }
